@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.geometry.Insets?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="GUI.ModifyUsers.ModifyUsers">
+
+    <style>
+        -fx-padding: 10;
+        -fx-border-style: solid inside;
+        -fx-border-width: 2;
+        -fx-border-insets: 5;
+        -fx-border-radius: 5;
+        -fx-border-color: black;
+    </style>
+
+    <center>
+        <VBox BorderPane.alignment="CENTER">
+            <TableView fx:id="userTable" BorderPane.alignment="CENTER">
+                <columns>
+                    <TableColumn text="ID" minWidth="150">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="userId"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="User Name" minWidth="150">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="username"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Active" minWidth="150">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="active"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Password1" minWidth="150" visible="false"/>
+                    <TableColumn text="Password2" minWidth="150" visible="false"/>
+                </columns>
+            </TableView>
+            <HBox>
+                <TextField fx:id="idField" promptText="ID" minWidth="75" visible="false">
+                    <HBox.margin>
+                        <Insets top="5.0" bottom="5.0"/>
+                    </HBox.margin>
+                </TextField>
+                <TextField fx:id="userNameField" promptText="User Name" minWidth="150">
+                    <HBox.margin>
+                        <Insets top="5.0" bottom="5.0"/>
+                    </HBox.margin>
+                </TextField>
+                <ComboBox fx:id="activeCombo" promptText="Make Active" minWidth="150">
+                    <HBox.margin>
+                        <Insets top="5.0" bottom="5.0"/>
+                    </HBox.margin>
+                </ComboBox>
+                <PasswordField fx:id="passwordField1" promptText="Password" minWidth="150">
+                    <HBox.margin>
+                        <Insets top="5.0" bottom="5.0"/>
+                    </HBox.margin>
+                </PasswordField>
+                <PasswordField fx:id="passwordField2" promptText="Repeat Password" minWidth="150">
+                    <HBox.margin>
+                        <Insets top="5.0" bottom="5.0"/>
+                    </HBox.margin>
+                </PasswordField>
+                <Button text="Add" textAlignment="CENTER" onAction="#addUser">
+                    <HBox.margin>
+                        <Insets top="5.0" bottom="5.0"/>
+                    </HBox.margin>
+                </Button>
+            </HBox>
+            <HBox BorderPane.alignment="CENTER" spacing="10.0" alignment="TOP_CENTER">
+                <children>
+                    <Button text="Edit Selected User" textAlignment="CENTER" onAction="#populateEditFields" visible="false"/>
+                </children>
+                <BorderPane.margin>
+                    <Insets bottom="10.0" top="10.0"/>
+                </BorderPane.margin>
+            </HBox>
+            <HBox>
+                <TextField fx:id="editIdField" promptText="ID" minWidth="75" visible="false">
+                    <HBox.margin>
+                        <Insets top="5.0" bottom="5.0"/>
+                    </HBox.margin>
+                </TextField>
+                <TextField fx:id="editUserNameField" promptText="User Name" minWidth="150" visible="false">
+                    <HBox.margin>
+                        <Insets top="5.0" bottom="5.0"/>
+                    </HBox.margin>
+                </TextField>
+                <ComboBox fx:id="editActiveCombo" promptText="Make Active" visible="false" minWidth="150">
+                    <HBox.margin>
+                        <Insets top="5.0" bottom="5.0"/>
+                    </HBox.margin>
+                </ComboBox>
+                <PasswordField fx:id="editPasswordField1" promptText="Password" minWidth="150" visible="false">
+                    <HBox.margin>
+                        <Insets top="5.0" bottom="5.0"/>
+                    </HBox.margin>
+                </PasswordField>
+                <PasswordField fx:id="editPasswordField2" promptText="Repeat Password" minWidth="150" visible="false">
+                    <HBox.margin>
+                        <Insets top="5.0" bottom="5.0"/>
+                    </HBox.margin>
+                </PasswordField>
+                <Button text="Save" textAlignment="CENTER" onAction="#editUser" visible="false">
+                    <HBox.margin>
+                        <Insets top="5.0" bottom="5.0"/>
+                    </HBox.margin>
+                </Button>
+            </HBox>
+        </VBox>
+    </center>
+
+</BorderPane>

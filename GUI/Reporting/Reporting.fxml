@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Text?>
+<?import javafx.geometry.Insets?>
+<BorderPane xmlns="https://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="GUI.Reporting.Reporting">
+    <style>
+        -fx-padding: 10;
+        -fx-border-style: solid inside;
+        -fx-border-width: 2;
+        -fx-border-insets: 5;
+        -fx-border-radius: 5;
+        -fx-border-color: black;
+    </style>
+    <top>
+        <HBox BorderPane.alignment="CENTER" spacing="10.0" alignment="TOP_CENTER">
+            <children>
+                <Button text="Unique Appointment Types This Month" textAlignment="CENTER" onAction="#uniqueAppts"/>
+                <Button text="Active Customers" textAlignment="CENTER" onAction="#activeCustomers"/>
+                <Button text="Active Users" textAlignment="CENTER" onAction="#activeUsers"/>
+            </children>
+            <BorderPane.margin>
+                <Insets bottom="10.0" top="10.0"/>
+            </BorderPane.margin>
+        </HBox>
+    </top>
+    <center>
+        <HBox BorderPane.alignment="CENTER" spacing="10.0" alignment="BOTTOM_CENTER">
+            <children>
+                <Text fx:id="reportTxt" textAlignment="CENTER"/>
+            </children>
+            <BorderPane.margin>
+                <Insets bottom="10.0" top="10.0"/>
+            </BorderPane.margin>
+        </HBox>
+    </center>
+</BorderPane>

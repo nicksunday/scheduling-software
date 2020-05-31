@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Text?>
+<GridPane xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="GUI.Login.Login"
+          alignment="CENTER" hgap="10" vgap="10">
+    <style>
+        -fx-padding: 10;
+        -fx-border-style: solid inside;
+        -fx-border-width: 2;
+        -fx-border-insets: 5;
+        -fx-border-radius: 5;
+        -fx-border-color: black;
+    </style>
+    <children>
+        <Text fx:id="welcomeTxt" text="Please login to access scheduling software"
+              GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="5"/>
+        <Label fx:id="userNameLbl" text="Username: " GridPane.columnIndex="0" GridPane.rowIndex="1"
+               GridPane.columnSpan="2"/>
+        <TextField fx:id="userName" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.columnSpan="2"
+                   onAction="#onEnter"/>
+        <Label fx:id="passwordLbl" text="Password: " GridPane.columnIndex="0" GridPane.rowIndex="2"
+               GridPane.columnSpan="2"/>
+        <PasswordField fx:id="passwordField" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.columnSpan="2"
+                       onAction="#onEnter"/>
+        <HBox spacing="10" alignment="BOTTOM_RIGHT"
+              GridPane.columnIndex="3" GridPane.rowIndex="4">
+              <Button fx:id="loginBtn" text="Login" textAlignment="CENTER" onAction="#authenticateLogin"/>
+        </HBox>
+        <Label fx:id="loginError" GridPane.columnSpan="5" GridPane.columnIndex="0" GridPane.rowIndex="5"
+              text="Username or password incorrect" textFill="red" visible="false" textAlignment="CENTER"/>
+    </children>
+</GridPane>

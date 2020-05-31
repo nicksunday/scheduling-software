@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            xmlns="https://javafx.com/javafx"
+            fx:controller="GUI.ModifyCustomers.ModifyCustomers">
+
+    <style>
+        -fx-padding: 10;
+        -fx-border-style: solid inside;
+        -fx-border-width: 2;
+        -fx-border-insets: 5;
+        -fx-border-radius: 5;
+        -fx-border-color: black;
+    </style>
+
+    <center>
+        <VBox BorderPane.alignment="CENTER">
+            <TableView fx:id="customerTable" BorderPane.alignment="CENTER">
+                <columns>
+                    <TableColumn text="ID" minWidth="150">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="customerId"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Name" minWidth="150">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="customerName"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Address 1" minWidth="150">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="address1"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Address 2" minWidth="150">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="address2"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="City" minWidth="150">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="city"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Country" minWidth="150">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="country"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Postal Code" minWidth="150">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="postalCode"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Phone" minWidth="150">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="phone"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Active" minWidth="150">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="active"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                </columns>
+            </TableView>
+            <HBox>
+                <TextField fx:id="idField" promptText="ID" minWidth="75" visible="false">
+                    <HBox.margin>
+                        <Insets top="5.0" bottom="5.0"/>
+                    </HBox.margin>
+                </TextField>
+                <TextField fx:id="nameField" promptText="Name" minWidth="150">
+                    <HBox.margin>
+                        <Insets top="5.0" bottom="5.0"/>
+                    </HBox.margin>
+                </TextField>
+                <TextField fx:id="address1Field" promptText="Address 1" minWidth="150">
+                    <HBox.margin>
+                        <Insets top="5.0" bottom="5.0"/>
+                    </HBox.margin>
+                </TextField>
+                <TextField fx:id="address2Field" promptText="Address 2 (Optional)" minWidth="150">
+                    <HBox.margin>
+                        <Insets top="5.0" bottom="5.0"/>
+                    </HBox.margin>
+                </TextField>
+                <TextField fx:id="cityField" promptText="City" minWidth="150">
+                    <HBox.margin>
+                        <Insets top="5.0" bottom="5.0"/>
+                    </HBox.margin>
+                </TextField>
+                <TextField fx:id="countryField" promptText="Country" minWidth="150">
+                    <HBox.margin>
+                        <Insets top="5.0" bottom="5.0"/>
+                    </HBox.margin>
+                </TextField>
+                <TextField fx:id="postalCodeField" promptText="Postal Code" minWidth="150">
+                    <HBox.margin>
+                        <Insets top="5.0" bottom="5.0"/>
+                    </HBox.margin>
+                </TextField>
+                <TextField fx:id="phoneField" promptText="Phone Number" minWidth="150">
+                    <HBox.margin>
+                        <Insets top="5.0" bottom="5.0"/>
+                    </HBox.margin>
+                </TextField>
+                <ComboBox fx:id="activeCombo" promptText="Make Active" minWidth="150">
+                    <HBox.margin>
+                        <Insets top="5.0" bottom="5.0"/>
+                    </HBox.margin>
+                </ComboBox>
+                <Button text="Add" textAlignment="CENTER" onAction="#addCustomer">
+                    <HBox.margin>
+                        <Insets top="5.0" bottom="5.0"/>
+                    </HBox.margin>
+                </Button>
+            </HBox>
+            <HBox BorderPane.alignment="CENTER" spacing="10.0" alignment="TOP_CENTER">
+                <children>
+                    <Button text="Edit Selected Customer" textAlignment="CENTER" onAction="#populateEditFields"/>
+                </children>
+                <BorderPane.margin>
+                    <Insets bottom="10.0" top="10.0"/>
+                </BorderPane.margin>
+            </HBox>
+            <HBox>
+                <TextField fx:id="editIdField" promptText="ID" minWidth="75" visible="false" editable="false">
+                    <HBox.margin>
+                        <Insets top="5.0" bottom="5.0"/>
+                    </HBox.margin>
+                </TextField>
+                <TextField fx:id="editNameField" promptText="Name" minWidth="150" visible="false">
+                    <HBox.margin>
+                        <Insets top="5.0" bottom="5.0"/>
+                    </HBox.margin>
+                </TextField>
+                <TextField fx:id="editAddress1Field" promptText="Address 1" minWidth="150" visible="false">
+                    <HBox.margin>
+                        <Insets top="5.0" bottom="5.0"/>
+                    </HBox.margin>
+                </TextField>
+                <TextField fx:id="editAddress2Field" promptText="Address 2 (Optional)" minWidth="150" visible="false">
+                    <HBox.margin>
+                        <Insets top="5.0" bottom="5.0"/>
+                    </HBox.margin>
+                </TextField>
+                <TextField fx:id="editCityField" promptText="City" minWidth="150" visible="false">
+                    <HBox.margin>
+                        <Insets top="5.0" bottom="5.0"/>
+                    </HBox.margin>
+                </TextField>
+                <TextField fx:id="editCountryField" promptText="Country" minWidth="150" visible="false">
+                    <HBox.margin>
+                        <Insets top="5.0" bottom="5.0"/>
+                    </HBox.margin>
+                </TextField>
+                <TextField fx:id="editPostalCodeField" promptText="Postal Code" minWidth="150" visible="false">
+                    <HBox.margin>
+                        <Insets top="5.0" bottom="5.0"/>
+                    </HBox.margin>
+                </TextField>
+                <TextField fx:id="editPhoneField" promptText="Phone Number" minWidth="150" visible="false">
+                    <HBox.margin>
+                        <Insets top="5.0" bottom="5.0"/>
+                    </HBox.margin>
+                </TextField>
+                <ComboBox fx:id="editActiveCombo" promptText="Make Active" minWidth="150" visible="false">
+                    <HBox.margin>
+                        <Insets top="5.0" bottom="5.0"/>
+                    </HBox.margin>
+                </ComboBox>
+                <Button fx:id="saveBtn" text="Save" textAlignment="CENTER" onAction="#editCustomer" visible="false">
+                    <HBox.margin>
+                        <Insets top="5.0" bottom="5.0"/>
+                    </HBox.margin>
+                </Button>
+            </HBox>
+            <HBox BorderPane.alignment="CENTER" spacing="10.0" alignment="TOP_CENTER">
+                <children>
+                    <Button text="Delete Selected Customer" textAlignment="CENTER" onAction="#deleteCustomer"/>
+                </children>
+                <BorderPane.margin>
+                    <Insets bottom="10.0" top="10.0"/>
+                </BorderPane.margin>
+            </HBox>
+        </VBox>
+    </center>
+
+
+</BorderPane>

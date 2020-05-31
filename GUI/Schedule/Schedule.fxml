@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Text?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<BorderPane xmlns="https://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="GUI.Schedule.Schedule">
+    <style>
+        -fx-padding: 10;
+        -fx-border-style: solid inside;
+        -fx-border-width: 2;
+        -fx-border-insets: 5;
+        -fx-border-radius: 5;
+        -fx-border-color: black;
+    </style>
+    <top>
+        <VBox BorderPane.alignment="TOP_CENTER" alignment="TOP_CENTER">
+            <children>
+                <Text fx:id="welcomeTxt" textAlignment="CENTER"/>
+                <Text fx:id="timeZoneTxt" textAlignment="CENTER"/>
+                <Text fx:id="businessHours" textAlignment="CENTER"/>
+            </children>
+            <BorderPane.margin>
+                <Insets bottom="10.0" top="10.0"/>
+            </BorderPane.margin>
+        </VBox>
+    </top>
+    <center>
+        <BorderPane>
+            <top>
+                <VBox spacing="10.0" BorderPane.alignment="CENTER">
+                    <HBox spacing="10" alignment="CENTER">
+                        <fx:define>
+                            <ToggleGroup fx:id="toggleGroup" />
+                        </fx:define>
+                        <children>
+                            <RadioButton text="Month" style="-fx-spacing: 10" onAction="#getMonthlySchedule"
+                                         toggleGroup="$toggleGroup" selected="true" fx:id="monthRadioBtn">
+                                <HBox.margin>
+                                    <Insets topRightBottomLeft="10.0"/>
+                                </HBox.margin>
+                            </RadioButton>
+                            <RadioButton text="Week" style="-fx-spacing: 10" onAction="#getWeeklySchedule"
+                                         toggleGroup="$toggleGroup" fx:id="weekRadioBtn">
+                                <HBox.margin>
+                                    <Insets topRightBottomLeft="10.0"/>
+                                </HBox.margin>
+                            </RadioButton>
+                        </children>
+                    </HBox>
+                    <HBox spacing="10.0" alignment="CENTER">
+                        <children>
+                            <Label text="Get schedule report for different user: ">
+                                <HBox.margin>
+                                    <Insets topRightBottomLeft="5.0"/>
+                                </HBox.margin>
+                            </Label>
+                            <ComboBox fx:id="userReportCombo" minWidth="75.0" promptText="Select User">
+                                <HBox.margin>
+                                    <Insets topRightBottomLeft="5.0"/>
+                                </HBox.margin>
+                            </ComboBox>
+                            <Button fx:id="runReportBtn" minWidth="75.0" text="Run Report" onAction="#runReport"/>
+                        </children>
+                    </HBox>
+                </VBox>
+            </top>
+            <center>
+                <VBox BorderPane.alignment="CENTER" spacing="10.0">
+                    <TableView fx:id="tableView">
+                        <placeholder>
+                            <Label fx:id="placeholderLabel" text="No appointments for the time period selected"/>
+                        </placeholder>
+                        <columns>
+                            <TableColumn text="Type" minWidth="150">
+                                <cellValueFactory>
+                                    <PropertyValueFactory property="type"/>
+                                </cellValueFactory>
+                            </TableColumn>
+                            <TableColumn text="Start" minWidth="150" fx:id="startColumn">
+                                <cellValueFactory>
+                                    <PropertyValueFactory property="start"/>
+                                </cellValueFactory>
+                            </TableColumn>
+                            <TableColumn text="End" minWidth="150">
+                                <cellValueFactory>
+                                    <PropertyValueFactory property="end"/>
+                                </cellValueFactory>
+                            </TableColumn>
+                            <TableColumn text="User" minWidth="150">
+                                <cellValueFactory>
+                                    <PropertyValueFactory property="userName"/>
+                                </cellValueFactory>
+                            </TableColumn>
+                            <TableColumn text="Customer" minWidth="150">
+                                <cellValueFactory>
+                                    <PropertyValueFactory property="customer"/>
+                                </cellValueFactory>
+                            </TableColumn>
+                        </columns>
+                    </TableView>
+                    <VBox>
+                        <HBox>
+                            <TextField fx:id="typeField" promptText="Type" minWidth="150">
+                                <HBox.margin>
+                                    <Insets top="5.0" bottom="5.0"/>
+                                </HBox.margin>
+                            </TextField>
+                            <TextField fx:id="startField" promptText="yyyy-MM-dd HH:mm" minWidth="150">
+                                <HBox.margin>
+                                    <Insets top="5.0" bottom="5.0"/>
+                                </HBox.margin>
+                            </TextField>
+                            <TextField fx:id="endField" promptText="yyyy-MM-dd HH:mm" minWidth="150">
+                                <HBox.margin>
+                                    <Insets top="5.0" bottom="5.0"/>
+                                </HBox.margin>
+                            </TextField>
+                            <ComboBox fx:id="userComboBox" minWidth="150" promptText="Select User">
+                                <HBox.margin>
+                                    <Insets top="5.0" bottom="5.0"/>
+                                </HBox.margin>
+                                <placeholder>
+                                    <Label text="No users found"/>
+                                </placeholder>
+                            </ComboBox>
+                            <ComboBox fx:id="customerComboBox" minWidth="150" promptText="Select Customer">
+                                <HBox.margin>
+                                    <Insets top="5.0" bottom="5.0"/>
+                                </HBox.margin>
+                                <placeholder>
+                                    <Label text="No customers found"/>
+                                </placeholder>
+                            </ComboBox>
+                            <Button onAction="#addAppointment" text="Add" minWidth="10">
+                                <HBox.margin>
+                                    <Insets topRightBottomLeft="5.0"/>
+                                </HBox.margin>
+                            </Button>
+                        </HBox>
+                        <HBox BorderPane.alignment="CENTER" alignment="CENTER">
+                            <Button onAction="#populateEditAppointment" text="Edit Selected Appointment" minWidth="10">
+                                <HBox.margin>
+                                    <Insets topRightBottomLeft="5.0"/>
+                                </HBox.margin>
+                            </Button>
+                        </HBox>
+                        <HBox>
+                            <TextField fx:id="editTypeField" promptText="Type" minWidth="150" visible="false">
+                                <HBox.margin>
+                                    <Insets top="5.0" bottom="5.0"/>
+                                </HBox.margin>
+                            </TextField>
+                            <TextField fx:id="editStartField" promptText="yyyy-MM-dd HH:mm" minWidth="150" visible="false">
+                                <HBox.margin>
+                                    <Insets top="5.0" bottom="5.0"/>
+                                </HBox.margin>
+                            </TextField>
+                            <TextField fx:id="editEndField" promptText="yyyy-MM-dd HH:mm" minWidth="150" visible="false">
+                                <HBox.margin>
+                                    <Insets top="5.0" bottom="5.0"/>
+                                </HBox.margin>
+                            </TextField>
+                            <ComboBox fx:id="editUserComboBox" minWidth="150" promptText="Select User" visible="false">
+                                <HBox.margin>
+                                    <Insets top="5.0" bottom="5.0"/>
+                                </HBox.margin>
+                                <placeholder>
+                                    <Label text="No users found"/>
+                                </placeholder>
+                            </ComboBox>
+                            <ComboBox fx:id="editCustomerComboBox" minWidth="150" promptText="Select Customer" visible="false">
+                                <HBox.margin>
+                                    <Insets top="5.0" bottom="5.0"/>
+                                </HBox.margin>
+                                <placeholder>
+                                    <Label text="No customers found"/>
+                                </placeholder>
+                            </ComboBox>
+                            <Button fx:id="saveBtn" onAction="#editAppointment" text="Save" minWidth="10" visible="false">
+                                <HBox.margin>
+                                    <Insets topRightBottomLeft="5.0"/>
+                                </HBox.margin>
+                            </Button>
+                        </HBox>
+                        <HBox BorderPane.alignment="CENTER" alignment="CENTER">
+                            <Button onAction="#deleteAppointment" text="Delete Selected Appointment" minWidth="10">
+                                <HBox.margin>
+                                    <Insets topRightBottomLeft="5.0"/>
+                                </HBox.margin>
+                            </Button>
+                        </HBox>
+                        <HBox BorderPane.alignment="CENTER" alignment="CENTER">
+                            <Button onAction="#modifyUsers" text="Modify Users" minWidth="10">
+                                <HBox.margin>
+                                    <Insets topRightBottomLeft="5.0"/>
+                                </HBox.margin>
+                            </Button>
+                            <Button onAction="#modifyCustomers" text="Modify Customers" minWidth="10">
+                                <HBox.margin>
+                                    <Insets topRightBottomLeft="5.0"/>
+                                </HBox.margin>
+                            </Button>
+                            <Button onAction="#reporting" text="Reporting" minWidth="10">
+                                <HBox.margin>
+                                    <Insets topRightBottomLeft="5.0"/>
+                                </HBox.margin>
+                            </Button>
+                        </HBox>
+                    </VBox>
+                </VBox>
+            </center>
+            <bottom>
+            </bottom>
+        </BorderPane>
+    </center>
+</BorderPane>
